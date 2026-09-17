@@ -21,7 +21,7 @@ Các số dưới đây là số ảnh đã chú thích và Save trong CVAT. C�
 | cp6_coverage | cp6_coverage.zip | 1 / 1 | 3 |
 | **Tổng tối đa** | | | **100** |
 
-Các mask được vẽ bằng polygon thủ công. Nhiều ranh nhỏ và vùng bị che vẫn còn thô; kiểm cấu trúc ZIP không xác nhận độ chính xác hình học. Chưa dùng ground truth/reference và chưa có điểm tự đánh giá.
+Các mask được vẽ bằng polygon thủ công. Nhiều ranh nhỏ và vùng bị che vẫn còn thô; kiểm cấu trúc ZIP không xác nhận độ chính xác hình học. Sau khi được xác nhận đáp án đã phát, tôi chạy scorer local trên ba tier: Easy 13,0/20 (mIoU 0,694), Medium 0,0/32 (metric 0,311), Hard 7,3/30 (PQ 0,310), tổng **20,3/82**. Đây là phản hồi kỹ thuật, không phải điểm chính thức, PASS hay bonus. Easy đã được sửa trong CVAT sau khi xem reference; bản export trước đó còn trong commit `7edc9cd` và bản sửa không phải bằng chứng độc lập trước khi phát đáp án. Không có ground truth trong repo hay ZIP bài nộp.
 
 ## 2. Một quyết định trước khi dùng gợi ý
 
@@ -36,7 +36,7 @@ Các mask được vẽ bằng polygon thủ công. Nhiều ranh nhỏ và vùng
 - Bằng chứng: polygon xe buýt vẽ lần đầu lấn sang phần taxi liền kề trên ảnh.
 - Hành động sửa: dùng Undo, vẽ lại phần xe buýt theo thân xe còn nhìn thấy và để taxi là instance riêng.
 - Sau sửa: đã Save trong CVAT và export lại `medium_instance.zip`.
-- Kiểm cấu trúc ZIP: script báo `[OK]` cho task; chưa có metric trước/sau hay điểm vì chưa dùng reference.
+- Kiểm cấu trúc ZIP: script báo `[OK]` cho task. Sau khi đáp án được phát, scorer local cho Medium metric 0,311 và 0,0/32; metric này đánh giá cả task, không đo riêng lỗi xe buýt đã sửa.
 
 ## 4. Ba ca chưa chắc hoặc đã cân nhắc
 
