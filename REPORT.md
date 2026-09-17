@@ -31,12 +31,11 @@ Các mask được vẽ bằng polygon thủ công. Nhiều ranh nhỏ và vùng
 
 ## 3. Một lỗi tôi tìm thấy và sửa
 
-- Task/ảnh/vùng: `medium_instance`, `000000181542.jpg`, ranh xe buýt với taxi.
-- Loại lỗi: biên và gộp nhầm vùng.
-- Bằng chứng: polygon xe buýt vẽ lần đầu lấn sang phần taxi liền kề trên ảnh.
-- Hành động sửa: dùng Undo, vẽ lại phần xe buýt theo thân xe còn nhìn thấy và để taxi là instance riêng.
-- Sau sửa: đã Save trong CVAT và export lại `medium_instance.zip`.
-- Kiểm cấu trúc ZIP: script báo `[OK]` cho task. Sau khi đáp án được phát, scorer local cho Medium metric 0,311 và 0,0/32; metric này đánh giá cả task, không đo riêng lỗi xe buýt đã sửa.
+- Task/ảnh/vùng: `easy_semantic`, `817bca71-00000000.jpg`, dải sidewalk bên trái từ mép ảnh đến gần thùng rác.
+- Loại lỗi: thiếu phủ vùng và đặt ranh sidewalk–road quá hẹp.
+- Bằng chứng: sau khi reference được phát, tôi đối chiếu mask đã export với ảnh; phần vỉa hè nhìn thấy dọc mép đường còn một dải chưa được gán `sidewalk`.
+- Quy tắc và hành động sửa: theo mép vỉa nhìn thấy, tôi vẽ bổ sung polygon `sidewalk` trong CVAT, không lấy lòng đường làm vỉa hè.
+- Sau sửa: đã Save và export lại `easy_semantic.zip`; kiểm cấu trúc ZIP báo `[OK]`. Trong lượt tự đánh giá local, IoU riêng của `sidewalk` tăng từ 0,523 lên 0,638 và mIoU Easy tăng từ 0,725 lên 0,753 sau lần sửa ảnh này. Đây là phản hồi sau khi xem reference, không phải điểm chính thức.
 
 ## 4. Ba ca chưa chắc hoặc đã cân nhắc
 
