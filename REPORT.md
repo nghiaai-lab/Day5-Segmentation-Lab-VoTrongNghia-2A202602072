@@ -21,7 +21,7 @@ Các số dưới đây là số ảnh đã chú thích và Save trong CVAT. C�
 | cp6_coverage | cp6_coverage.zip | 1 / 1 | 3 |
 | **Tổng tối đa** | | | **100** |
 
-Các mask được vẽ bằng polygon thủ công. Nhiều ranh nhỏ và vùng bị che vẫn còn thô; kiểm cấu trúc ZIP không xác nhận độ chính xác hình học. Sau khi được xác nhận đáp án đã phát, tôi chạy scorer local trên ba tier: Easy 13,0/20 (mIoU 0,694), Medium 0,0/32 (metric 0,311), Hard 7,3/30 (PQ 0,310), tổng **20,3/82**. Đây là phản hồi kỹ thuật, không phải điểm chính thức, PASS hay bonus. Easy đã được sửa trong CVAT sau khi xem reference; bản export trước đó còn trong commit `7edc9cd` và bản sửa không phải bằng chứng độc lập trước khi phát đáp án. Không có ground truth trong repo hay ZIP bài nộp.
+Các mask được vẽ bằng polygon thủ công. Nhiều ranh nhỏ và vùng bị che vẫn còn thô; kiểm cấu trúc ZIP không xác nhận độ chính xác hình học. Sau khi được xác nhận đáp án đã phát, tôi chạy scorer local trên ba tier: Easy 15,7/20 (mIoU 0,753), Medium 0,0/32 (metric 0,311), Hard 7,3/30 (PQ 0,310), tổng **23,0/82**. Đây là phản hồi kỹ thuật, không phải điểm chính thức, PASS hay bonus. Easy đã được sửa trong CVAT sau khi xem reference; bản export trước đó còn trong commit `7edc9cd` và bản sửa không phải bằng chứng độc lập trước khi phát đáp án. Đối chiếu Hard cho thấy reference `sidewalk` phủ một phần vùng nhìn như làn xe trong ảnh `000000460147.jpg`; tôi giữ nhãn theo ranh nhìn thấy và để coach xem lại cách áp dụng quy tắc. Không có ground truth trong repo hay ZIP bài nộp.
 
 ## 2. Một quyết định trước khi dùng gợi ý
 
