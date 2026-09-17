@@ -1,59 +1,47 @@
-# Báo cáo Day 5 — điền trực tiếp trong fork của bạn
+# Báo cáo Day 5 — repo cá nhân
 
-**Cách dùng:** Thay mọi dấu `…` bằng bài làm thật của bạn trước khi nộp link fork trên VLearn. Giữ nguyên bốn mục và bảng để coach đọc nhanh. Viết ngắn, cụ thể theo ảnh/vùng; không cần thuật ngữ chuyên sâu. Ví dụ trong [hướng dẫn mẫu](reports/REPORT_TEMPLATE.md) chỉ giúp hiểu cách điền, không phải câu trả lời để chép lại.
-
-- Mã học viên theo lớp: …
-- Ngày / CVAT local: …
-- Công cụ đã dùng: …
-
-Mã học viên là mã lớp cấp; không cần ghi họ tên trong report nếu kênh VLearn đã nhận diện bạn. Chỉ ghi công cụ thật sự đã dùng; không có SAM vẫn làm bài bình thường.
+- Mã học viên theo tên repo: 2A202602072
+- Ngày / CVAT local: 17/09/2026 / http://localhost:8080
+- Công cụ đã dùng: CVAT local (vẽ polygon, Save và export), Codex hỗ trợ thao tác và kiểm ZIP bằng `scripts/inspect_submissions.py`. Không dùng Colab, Jupyter hoặc SAM.
 
 ## 1. Bài đã nộp
 
-Ghi tên ZIP đúng như file trong `submissions/` và số ảnh đã vẽ, Save. Chưa làm hoặc export lỗi thì ghi `chưa có`, không tạo ZIP rỗng. Cột điểm là điểm tối đa của task, **không phải điểm tự chấm**.
+Các số dưới đây là số ảnh đã chú thích và Save trong CVAT. Cột điểm là điểm tối đa, không phải điểm tự chấm.
 
 | Task | File ZIP đúng tên | Hoàn thành mấy ảnh | Điểm tối đa (coach chấm sau) |
 | --- | --- | ---: | ---: |
-| easy_semantic | … | … / 3 | 20 |
-| medium_instance | … | … / 3 | 32 |
-| hard_panoptic | … | … / 2 | 30 |
-| cp1_holes | … | … / 1 | 3 |
-| cp2_slice | … | … / 1 | 3 |
-| cp5_occlusion | … | … / 1 | 3 |
-| cp3_thin | … | … / 1 | 3 |
-| cp4_curb | … | … / 1 | 3 |
-| cp6_coverage | … | … / 1 | 3 |
+| easy_semantic | easy_semantic.zip | 3 / 3 | 20 |
+| medium_instance | medium_instance.zip | 3 / 3 | 32 |
+| hard_panoptic | hard_panoptic.zip | 2 / 2 | 30 |
+| cp1_holes | cp1_holes.zip | 1 / 1 | 3 |
+| cp2_slice | cp2_slice.zip | 1 / 1 | 3 |
+| cp5_occlusion | cp5_occlusion.zip | 1 / 1 | 3 |
+| cp3_thin | cp3_thin.zip | 1 / 1 | 3 |
+| cp4_curb | cp4_curb.zip | 1 / 1 | 3 |
+| cp6_coverage | cp6_coverage.zip | 1 / 1 | 3 |
 | **Tổng tối đa** | | | **100** |
 
-Nếu export lỗi, ghi task, dữ liệu đã Save đến đâu và lỗi đã báo coach.
+Các mask được vẽ bằng polygon thủ công. Nhiều ranh nhỏ và vùng bị che vẫn còn thô; kiểm cấu trúc ZIP không xác nhận độ chính xác hình học. Chưa dùng ground truth/reference và chưa có điểm tự đánh giá.
 
 ## 2. Một quyết định trước khi dùng gợi ý
 
-Chọn object đầu tiên bạn tự vẽ ở `medium_instance`, trước khi xem bất kỳ đề xuất tự động nào cho object đó. Ghi ảnh/vị trí đủ để tìm lại; “quy tắc biên” là lý do bạn chọn hoặc dừng mask ở ranh đó.
-
-- Ảnh, vị trí và object Medium đầu tiên tự vẽ: …
-- Class và quy tắc tôi dùng để chọn biên: …
-- Nếu dùng gợi ý sau đó: vùng gợi ý sai/đúng, hành động sửa/giữ và lý do: …
-- Nếu không dùng gợi ý: ghi “không dùng”; vẫn giải thích một quyết định gán nhãn của mình.
+- Ảnh, vị trí và object Medium đầu tiên tự vẽ: `000000181542.jpg`, người phụ nữ mặc đồ sáng ở tiền cảnh gần giữa ảnh.
+- Class và quy tắc chọn biên: `person`; theo đường bao phần cơ thể/quần áo nhìn thấy (đầu, vai, tay, thân và chân), dừng ở ranh với mặt đường và vật che. Đây là một instance riêng.
+- Gợi ý tự động: không dùng. Tôi giữ đối tượng người riêng khỏi các xe xung quanh theo ranh nhìn thấy, không lấy vùng nền nằm giữa hai chân vào mask người.
 
 ## 3. Một lỗi tôi tìm thấy và sửa
 
-Chọn một lỗi **có thật** trong bài. Nếu công cụ lỗi khiến bạn chưa sửa được, ghi rõ đã thử gì và cần coach hỗ trợ gì; không ghi “đã sửa” khi chưa sửa.
-
-- Task/ảnh/vùng: …
-- Lỗi thuộc loại: sai lớp / thiếu-thừa vật / gộp-tách / biên / phủ vùng / khác: …
-- Bằng chứng tôi nhìn thấy: …
-- Quy tắc và hành động sửa: …
-- Sau sửa đã Save và export lại chưa? …
-
-Nếu bạn **đã xem Summary tự đánh giá trên GitHub Actions hoặc tự chạy script**, ghi ngắn một kết quả liên quan lỗi vừa sửa (ví dụ task, metric trước/sau nếu có): … / chưa có điểm. Scorecard ba tier tối đa **82**, không phải điểm cuối trên 100. Không tự ghi PASS/top 3/bonus; người phụ trách xác nhận theo tiêu chí lớp. Không đưa file ground truth vào fork.
+- Task/ảnh/vùng: `medium_instance`, `000000181542.jpg`, ranh xe buýt với taxi.
+- Loại lỗi: biên và gộp nhầm vùng.
+- Bằng chứng: polygon xe buýt vẽ lần đầu lấn sang phần taxi liền kề trên ảnh.
+- Hành động sửa: dùng Undo, vẽ lại phần xe buýt theo thân xe còn nhìn thấy và để taxi là instance riêng.
+- Sau sửa: đã Save trong CVAT và export lại `medium_instance.zip`.
+- Kiểm cấu trúc ZIP: script báo `[OK]` cho task; chưa có metric trước/sau hay điểm vì chưa dùng reference.
 
 ## 4. Ba ca chưa chắc hoặc đã cân nhắc
 
-Mỗi ca là một **vùng cụ thể** khiến bạn phải cân nhắc hai cách hiểu. Ghi dấu hiệu nhìn thấy hoặc quy tắc đã dùng, rồi nêu quyết định hoặc câu hỏi cho coach. Không cần ba lỗi; ca đã quyết định được cũng hợp lệ.
-
 | Ảnh/vị trí | Hai cách hiểu có thể | Quy tắc/chứng cứ | Quyết định hoặc câu hỏi cho coach |
 | --- | --- | --- | --- |
-| 1 | … | … | … |
-| 2 | … | … | … |
-| 3 | … | … | … |
+| `000000181542.jpg`, taxi sát xe buýt | Một khối xe chung hoặc hai instance | Hai thân xe có ranh và độ che khuất khác nhau | Tách xe buýt và taxi; polygon theo phần nhìn thấy. |
+| `7d83710e-4697c3b2.jpg`, mép vỉa hè và dải đất sát đường | Gộp dải đất vào sidewalk hoặc chỉ lấy mặt vỉa rõ | Mép bó vỉa là đường đổi cao độ/bề mặt; dải đất không phải mặt đi bộ rõ ràng | Tách road và sidewalk ở mép bó vỉa; dải đất không gán sidewalk. |
+| `7daa6479-67988f3f.jpg`, xe buýt lớn và xe tải trái ảnh | Gán chung `car` để phủ hết hoặc để nền | Bộ nhãn CP6 có `car` nhưng không có `bus`/`truck`; hình xe buýt và xe tải rõ khác ô tô | Để hai xe ở nền thay vì gán sai class; mong coach xác nhận cách xử lý phạm vi nhãn. |
